@@ -17,9 +17,14 @@
 
 </head>
 <body class="bg-gray-100">
-<!-- CSS -->
+<!-- CSS ANIMASI -->
 
 <style>
+
+html {
+    scroll-behavior: smooth;
+}
+
 @keyframes fadeUp {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -48,6 +53,43 @@
 .wave-anim {
     animation: waveFloat 5s ease-in-out infinite;
 }
+
+/* Fade in + slide up */
+@keyframes heroFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: heroFade 1.2s ease-out forwards;
+}
+
+@keyframes cardFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-animate {
+  opacity: 0;
+  animation: cardFade 0.9s ease-out forwards;
+}
+.card-animate:nth-child(1) { animation-delay: 0.1s; }
+.card-animate:nth-child(2) { animation-delay: 0.2s; }
+.card-animate:nth-child(3) { animation-delay: 0.3s; }
+.card-animate:nth-child(4) { animation-delay: 0.4s; }
+.card-animate:nth-child(5) { animation-delay: 0.5s; }
 </style>
 
 <!-- CSS -->
@@ -135,7 +177,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
     style="background-image: url('assets/img/organisasi-bg.jpeg');">
     
     <div class="bg-black bg-opacity-50 w-full h-full flex items-center">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 hero-animate">
             <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg fade-up">
                 HimmaConnect
             </h1>
@@ -221,7 +263,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
         <div class="grid md:grid-cols-3 gap-8 mt-12">
 
             <?php
-            include 'config/koneksi.php'; // SESUAIKAN PATH
+            include 'config/koneksi.php'; 
             
             $data = mysqli_query($conn, "SELECT * FROM kegiatan ORDER BY tanggal DESC");
 
@@ -236,37 +278,38 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
             ?>
 
             <!-- CARD -->
-            <div class="reveal bg-white p-5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition">
-                
-                <!-- GAMBAR -->
-                <img 
-                    src="uploads/<?= $k['gambar'] ?>" 
-                    class="w-full h-48 object-cover"
-                    onerror="this.src='assets/img/default-event.jpg'"
-                >
+            <a href="detail_kegiatan.php?id=<?= $k['id_kegiatan'] ?>" class="block">
+                <div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl 
+                            transition transform hover:scale-[1.03] duration-300 
+                            overflow-hidden">
 
-                <div class="p-5">
-                    <h3 class="text-xl font-semibold text-gray-800">
-                        <?= htmlspecialchars($k['judul']) ?>
-                    </h3>
+                    <img 
+                        src="uploads/<?= $k['gambar'] ?>" 
+                        class="w-full h-48 object-cover"
+                        onerror="this.src='assets/img/default-event.jpg'"
+                    >
 
-                    <p class="text-gray-600 text-sm mt-2">
-                        <?= substr(htmlspecialchars($k['deskripsi']), 0, 120) ?>...
-                    </p>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">
+                            <?= htmlspecialchars($k['judul']) ?>
+                        </h3>
 
-                    <p class="mt-3 text-gray-500 text-sm flex items-center gap-1">
-                    <?= date("d M Y", strtotime($k['tanggal'])) ?>
-                    </p>
+                        <p class="text-gray-600 text-sm mt-2">
+                            <?= substr(htmlspecialchars($k['deskripsi']), 0, 120) ?>...
+                        </p>
+
+                        <p class="mt-3 text-gray-500 text-sm">
+                            <?= date("d M Y", strtotime($k['tanggal'])) ?>
+                        </p>
+                    </div>
                 </div>
-            </div>
-
+            </a>
             <?php endwhile; ?>
-
         </div>
-
     </div>
 </section>
 <!-- SECTION KEGIATAN -->
+
 
 <!-- ASPIRASI SECTION -->
 <section id="aspirasi" class="py-20 bg-gray-100">
@@ -319,12 +362,23 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
 <!-- FOOTER -->
 <footer class="bg-blue-600 text-white py-10">
-  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-6">
 
-    <div class="text-center md:text-left">
+    <div class="text-center md:text-left max-w-sm">
       <h2 class="text-2xl font-bold">HimmaConnect</h2>
       <p class="text-sm mt-1">Sarana Informasi • Kegiatan • Aspirasi Mahasiswa</p>
-      <p class="text-xs mt-2 opacity-80">&copy; 2025 HimmaConnect — All rights reserved</p>
+
+      <!-- ALAMAT + LINK GOOGLE MAPS -->
+      <p class="text-sm mt-3">
+        <strong>Alamat:</strong><br>
+        <a href="https://maps.app.goo.gl/AhRasBUddz3bf35n6"
+           target="_blank"
+           class="underline hover:text-gray-300">
+           SMKN 4 Padalarang, Kertajaya, Kec. Padalarang, Kabupaten Bandung Barat, Jawa Barat 40553
+        </a>
+      </p>
+
+      <p class="text-xs mt-3 opacity-80">&copy; 2025 HimmaConnect — All rights reserved</p>
     </div>
 
     <!-- SOCIAL -->
@@ -337,7 +391,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
   </div>
 </footer>
-<!-- FOOTER -->
+<!-- FOOTER -->
 
 
 
@@ -390,7 +444,6 @@ function checkReveal() {
 window.addEventListener('scroll', checkReveal);
 window.addEventListener('load', checkReveal);
 </script>
-
 <!-- scroll js -->
 
 </body>

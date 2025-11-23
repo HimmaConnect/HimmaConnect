@@ -14,8 +14,24 @@ if (isset($_POST['simpan'])) {
     $prodi = $_POST['prodi'];
     $email = $_POST['email'];
 
-    mysqli_query($conn, "INSERT INTO anggota (nama, nim, prodi, email, password) 
-                         VALUES ('$nama','$nim','$prodi','$email','$defaultPassword')");
+    // ---- UPLOAD FOTO ----
+    $fotoName = "default.jpg";
+
+    if (!empty($_FILES['foto']['name'])) {
+        $fileTmp  = $_FILES['foto']['tmp_name'];
+        $fileName = time() . "-" . $_FILES['foto']['name'];
+        $dest = "../uploads/anggota/" . $fileName;
+
+        move_uploaded_file($fileTmp, $dest);
+
+        $fotoName = $fileName;
+    }
+
+    mysqli_query($conn, 
+        "INSERT INTO anggota (nama, nim, prodi, email, password, foto) 
+         VALUES ('$nama', '$nim', '$prodi', '$email', '$defaultPassword', '$fotoName')"
+    );
+
     header("Location: anggota.php");
     exit;
 }
@@ -30,19 +46,18 @@ if (isset($_POST['simpan'])) {
 
 <body class="bg-gray-100">
 
-<!-- HEADER -->
 <div class="bg-white shadow-sm border-b py-4 px-6 fixed top-0 left-0 right-0 z-50">
     <h1 class="text-xl font-bold text-blue-700">Tambah Anggota Baru</h1>
 </div>
 
-<!-- CONTENT -->
 <div class="pt-24 px-6 pb-10 max-w-xl mx-auto">
 
     <div class="bg-white p-6 shadow-lg rounded-2xl border">
 
         <h2 class="text-2xl font-bold mb-6 text-gray-800">➕ Tambah Anggota</h2>
 
-        <form method="POST" class="space-y-5">
+        <!-- Tambahin enctype -->
+        <form method="POST" enctype="multipart/form-data" class="space-y-5">
 
             <div>
                 <label class="font-semibold">Nama Lengkap</label>
@@ -68,7 +83,14 @@ if (isset($_POST['simpan'])) {
                        class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
-            <!-- PASSWORD DEFAULT -->
+            <!-- FOTO -->
+            <div>
+                <label class="font-semibold">Foto</label>
+                <input type="file" name="foto"
+                       class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                <p class="text-sm text-gray-500 italic">Opsional, boleh kosong.</p>
+            </div>
+
             <p class="text-sm text-gray-500 italic">
                 Password otomatis: <span class="font-semibold">hima123</span>
             </p>

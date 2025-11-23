@@ -81,57 +81,70 @@ function toggleSidebar() {
     <!-- TABLE BOX -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden border">
         <div class="overflow-x-auto">
-            <table class="w-full">
-                <thead>
-                    <tr class="bg-blue-700 text-white text-sm">
-                        <th class="p-4 text-center w-14 rounded-tl-2xl">No</th>
-                        <th class="p-4 text-left">Nama</th>
-                        <th class="p-4 text-left whitespace-nowrap">NIM</th>
-                        <th class="p-4 text-left whitespace-nowrap">Prodi</th>
-                        <th class="p-4 text-left w-80">Email</th>
-                        <th class="p-4 text-center w-32 rounded-tr-2xl">Aksi</th>
-                    </tr>
-                </thead>
+ <table class="w-full">
+    <thead>
+        <tr class="bg-blue-700 text-white text-sm">
+            <th class="p-4 text-center w-14 rounded-tl-2xl">No</th>
+            <th class="p-4 text-center w-80">Foto</th>
+            <th class="p-4 text-left">Nama</th>
+            <th class="p-4 text-left whitespace-nowrap">NIM</th>
+            <th class="p-4 text-left whitespace-nowrap">Prodi</th>
+            <th class="p-4 text-left w-80">Email</th>
+            <th class="p-4 text-center w-32 rounded-tr-2xl">Aksi</th>
+        </tr>
+    </thead>
 
-                <tbody>
-                    <?php
-                    $no = 1;
-                    if (mysqli_num_rows($anggota) > 0) {
-                        while ($row = mysqli_fetch_assoc($anggota)) {
-                    ?>
+    <tbody>
+        <?php
+        $no = 1;
+        if (mysqli_num_rows($anggota) > 0) {
+            while ($row = mysqli_fetch_assoc($anggota)) {
+        ?>
 
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="p-4 text-center"><?= $no++ ?></td>
-                        <td class="p-4 font-medium"><?= htmlspecialchars($row['nama']) ?></td>
-                        <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['nim']) ?></td>
-                        <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['prodi']) ?></td>
-                        <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['email']) ?></td>
+        <tr class="border-b hover:bg-gray-50">
+            <td class="p-4 text-center"><?= $no++ ?></td>
 
-                        <td class="p-4 flex justify-center gap-2">
-                            <a href="edit_anggota.php?id_anggota=<?= $row['id_anggota'] ?>"
-                               class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow text-sm">
-                               Edit
-                            </a>
+            <!-- FOTO -->
+            <td class="p-4 text-center">
+                <?php if (!empty($row['foto'])) { ?>
+                    <img src="../uploads/anggota/<?= $row['foto'] ?>" 
+                         class="w-12 h-12 rounded-full object-cover mx-auto">
+                <?php } else { ?>
+                    <span class="text-gray-400 text-sm">-</span>
+                <?php } ?>
+            </td>
 
-                            <a href="hapus_anggota.php?id_anggota=<?= $row['id_anggota'] ?>"
-                               onclick="return confirm('Yakin hapus anggota ini?')"
-                               class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow text-sm">
-                               Hapus
-                            </a>
-                        </td>
-                    </tr>
+            <td class="p-4 font-medium"><?= htmlspecialchars($row['nama']) ?></td>
+            <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['nim']) ?></td>
+            <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['prodi']) ?></td>
+            <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['email']) ?></td>
 
-                    <?php } } else { ?>
+            <td class="p-4 flex justify-center gap-2">
+                <a href="edit_anggota.php?id_anggota=<?= $row['id_anggota'] ?>"
+                   class="px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow text-sm">
+                   Edit
+                </a>
 
-                    <tr>
-                        <td colspan="6" class="p-6 text-center text-gray-500 text-lg">
-                            Belum ada data anggota 
-                        </td>
-                    </tr>
+                <a href="hapus_anggota.php?id_anggota=<?= $row['id_anggota'] ?>"
+                   onclick="return confirm('Yakin hapus anggota ini?')"
+                   class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow text-sm">
+                   Hapus
+                </a>
+            </td>
+        </tr>
 
-                    <?php } ?>
-                </tbody>
-            </table>
+        <?php } } else { ?>
+
+        <tr>
+            <td colspan="7" class="p-6 text-center text-gray-500 text-lg">
+                Belum ada data anggota 
+            </td>
+        </tr>
+
+        <?php } ?>
+    </tbody>
+</table>
+
         </div>
     </div>
 
