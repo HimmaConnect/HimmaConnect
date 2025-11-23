@@ -9,54 +9,49 @@ include '../config/koneksi.php';
 
 $id = $_GET['id_anggota'];
 
-// Ambil data anggota lama
+// Ambil data lama
 $data = mysqli_fetch_assoc(
     mysqli_query($conn, "SELECT * FROM anggota WHERE id_anggota='$id'")
 );
 
 $foto_lama = $data['foto'];
 
-// Update data
 if (isset($_POST['update'])) {
     $nama   = $_POST['nama'];
-    $nim    = $_POST['nim'];
-    $prodi  = $_POST['prodi'];
+    $divisi = $_POST['divisi'];
     $email  = $_POST['email'];
 
-    // Cek apakah ada upload foto baru
+    // Upload foto baru jika ada
     if (!empty($_FILES['foto']['name'])) {
-        $file_name = time() . "_" . $_FILES['foto']['name'];
+        $fileName = time() . "-" . $_FILES['foto']['name'];
         $tmp = $_FILES['foto']['tmp_name'];
 
-        // Simpan foto baru
-        move_uploaded_file($tmp, "../uploads/anggota/" . $file_name);
+        move_uploaded_file($tmp, "../uploads/anggota/" . $fileName);
 
-        // Hapus foto lama jika ada
-        if ($foto_lama && file_exists("../uploads/anggota/" . $foto_lama)) {
+        // hapus foto lama kecuali default
+        if ($foto_lama != "default.jpg" && file_exists("../uploads/anggota/" . $foto_lama)) {
             unlink("../uploads/anggota/" . $foto_lama);
         }
 
-        $foto_final = $file_name;
+        $foto_final = $fileName;
     } else {
-        $foto_final = $foto_lama; // Kalau tidak upload foto baru
+        $foto_final = $foto_lama;
     }
 
     // Update database
-    $query = "UPDATE anggota SET 
-                nama='$nama',
-                nim='$nim',
-                prodi='$prodi',
-                email='$email',
-                foto='$foto_final'
-              WHERE id_anggota='$id'";
-
-    mysqli_query($conn, $query);
+    mysqli_query($conn, "
+        UPDATE anggota SET 
+            nama='$nama',
+            divisi='$divisi',
+            email='$email',
+            foto='$foto_final'
+        WHERE id_anggota='$id'
+    ");
 
     header("Location: anggota.php");
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -67,12 +62,10 @@ if (isset($_POST['update'])) {
 
 <body class="bg-gray-100">
 
-<!-- HEADER -->
 <div class="bg-white shadow-sm border-b py-4 px-6 fixed top-0 left-0 right-0 z-50">
     <h1 class="text-xl font-bold text-blue-700">Edit Data Anggota</h1>
 </div>
 
-<!-- CONTENT -->
 <div class="pt-24 px-6 pb-10 max-w-xl mx-auto">
 
     <div class="bg-white p-6 shadow-xl rounded-2xl border">
@@ -81,9 +74,9 @@ if (isset($_POST['update'])) {
 
         <form method="POST" enctype="multipart/form-data" class="space-y-6">
 
-            <!-- FOTO PREVIEW -->
+            <!-- FOTO -->
             <div class="flex flex-col items-center">
-                <img src="../uploads/anggota/<?= $foto_lama ?>" 
+                <img src="../uploads/anggota/<?= $foto_lama ?>"
                      onerror="this.src='../uploads/anggota/default.jpg'"
                      class="w-32 h-32 rounded-full object-cover shadow mb-3">
 
@@ -92,6 +85,7 @@ if (isset($_POST['update'])) {
                        class="w-full p-2 border rounded-xl bg-gray-50">
             </div>
 
+            <!-- Nama -->
             <div>
                 <label class="font-semibold">Nama Lengkap</label>
                 <input type="text" name="nama"
@@ -100,22 +94,28 @@ if (isset($_POST['update'])) {
                        class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
+            <!-- Divisi -->
             <div>
-                <label class="font-semibold">NIM</label>
-                <input type="text" name="nim"
-                       value="<?= $data['nim']; ?>"
-                       required
-                       class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                <label class="font-semibold">Divisi</label>
+                <select name="divisi" required
+                        class="w-full p-3 border rounded-xl bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+
+                    <option value="Ketua"          <?= $data['divisi']=='Ketua' ? 'selected':'' ?>>Ketua</option>
+                    <option value="Wakil Ketua"    <?= $data['divisi']=='Wakil Ketua' ? 'selected':'' ?>>Wakil Ketua</option>
+                    <option value="Sekretaris"     <?= $data['divisi']=='Sekretaris' ? 'selected':'' ?>>Sekretaris</option>
+                    <option value="Bendahara"      <?= $data['divisi']=='Bendahara' ? 'selected':'' ?>>Bendahara</option>
+
+                    <option value="Acara"          <?= $data['divisi']=='Acara' ? 'selected':'' ?>>Acara</option>
+                    <option value="Dokumentasi"    <?= $data['divisi']=='Dokumentasi' ? 'selected':'' ?>>Dokumentasi</option>
+                    <option value="Perlengkapan"   <?= $data['divisi']=='Perlengkapan' ? 'selected':'' ?>>Perlengkapan</option>
+                    <option value="Konsumsi"       <?= $data['divisi']=='Konsumsi' ? 'selected':'' ?>>Konsumsi</option>
+                    <option value="Humas"          <?= $data['divisi']=='Humas' ? 'selected':'' ?>>Humas</option>
+                    <option value="Media"          <?= $data['divisi']=='Media' ? 'selected':'' ?>>Media</option>
+
+                </select>
             </div>
 
-            <div>
-                <label class="font-semibold">Program Studi</label>
-                <input type="text" name="prodi"
-                       value="<?= $data['prodi']; ?>"
-                       required
-                       class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
-            </div>
-
+            <!-- Email -->
             <div>
                 <label class="font-semibold">Email</label>
                 <input type="email" name="email"
@@ -125,7 +125,7 @@ if (isset($_POST['update'])) {
             </div>
 
             <div class="flex gap-3 pt-4">
-                <button type="submit" name="update" 
+                <button type="submit" name="update"
                         class="px-5 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 shadow">
                     Update
                 </button>

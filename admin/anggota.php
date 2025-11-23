@@ -87,8 +87,7 @@ function toggleSidebar() {
             <th class="p-4 text-center w-14 rounded-tl-2xl">No</th>
             <th class="p-4 text-center w-80">Foto</th>
             <th class="p-4 text-left">Nama</th>
-            <th class="p-4 text-left whitespace-nowrap">NIM</th>
-            <th class="p-4 text-left whitespace-nowrap">Prodi</th>
+            <th class="p-4 text-left whitespace-nowrap">Divisi</th>
             <th class="p-4 text-left w-80">Email</th>
             <th class="p-4 text-center w-32 rounded-tr-2xl">Aksi</th>
         </tr>
@@ -115,8 +114,7 @@ function toggleSidebar() {
             </td>
 
             <td class="p-4 font-medium"><?= htmlspecialchars($row['nama']) ?></td>
-            <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['nim']) ?></td>
-            <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['prodi']) ?></td>
+            <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['divisi']) ?></td>
             <td class="p-4 whitespace-nowrap"><?= htmlspecialchars($row['email']) ?></td>
 
             <td class="p-4 flex justify-center gap-2">

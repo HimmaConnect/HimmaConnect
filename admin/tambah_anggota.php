@@ -6,13 +6,10 @@ if (!isset($_SESSION['admin'])) {
 }
 include '../config/koneksi.php';
 
-$defaultPassword = md5("hima123"); // PASSWORD DEFAULT
-
 if (isset($_POST['simpan'])) {
-    $nama  = $_POST['nama'];
-    $nim   = $_POST['nim'];
-    $prodi = $_POST['prodi'];
-    $email = $_POST['email'];
+    $nama   = $_POST['nama'];
+    $divisi = $_POST['divisi'];
+    $email  = $_POST['email'];
 
     // ---- UPLOAD FOTO ----
     $fotoName = "default.jpg";
@@ -28,8 +25,8 @@ if (isset($_POST['simpan'])) {
     }
 
     mysqli_query($conn, 
-        "INSERT INTO anggota (nama, nim, prodi, email, password, foto) 
-         VALUES ('$nama', '$nim', '$prodi', '$email', '$defaultPassword', '$fotoName')"
+        "INSERT INTO anggota (nama, divisi, email, foto) 
+         VALUES ('$nama', '$divisi', '$email', '$fotoName')"
     );
 
     header("Location: anggota.php");
@@ -56,7 +53,6 @@ if (isset($_POST['simpan'])) {
 
         <h2 class="text-2xl font-bold mb-6 text-gray-800">➕ Tambah Anggota</h2>
 
-        <!-- Tambahin enctype -->
         <form method="POST" enctype="multipart/form-data" class="space-y-5">
 
             <div>
@@ -66,16 +62,27 @@ if (isset($_POST['simpan'])) {
             </div>
 
             <div>
-                <label class="font-semibold">NIM</label>
-                <input type="text" name="nim" required
-                       class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                <label class="font-semibold">Divisi</label>
+                <select name="divisi" required
+                        class="w-full p-3 border rounded-xl bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+
+                    <option value="" disabled selected>Pilih Divisi</option>
+
+                    <option value="Ketua">Ketua</option>
+                    <option value="Wakil Ketua">Wakil Ketua</option>
+                    <option value="Sekretaris">Sekretaris</option>
+                    <option value="Bendahara">Bendahara</option>
+
+                    <option value="Acara">Acara</option>
+                    <option value="Dokumentasi">Dokumentasi</option>
+                    <option value="Perlengkapan">Perlengkapan</option>
+                    <option value="Konsumsi">Konsumsi</option>
+                    <option value="Humas">Humas</option>
+                    <option value="Media">Media</option>
+
+                </select>
             </div>
 
-            <div>
-                <label class="font-semibold">Program Studi</label>
-                <input type="text" name="prodi" required
-                       class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
-            </div>
 
             <div>
                 <label class="font-semibold">Email</label>
@@ -83,17 +90,12 @@ if (isset($_POST['simpan'])) {
                        class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
             </div>
 
-            <!-- FOTO -->
             <div>
                 <label class="font-semibold">Foto</label>
                 <input type="file" name="foto"
                        class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
                 <p class="text-sm text-gray-500 italic">Opsional, boleh kosong.</p>
             </div>
-
-            <p class="text-sm text-gray-500 italic">
-                Password otomatis: <span class="font-semibold">hima123</span>
-            </p>
 
             <div class="flex gap-3 pt-4">
                 <button type="submit" name="simpan"

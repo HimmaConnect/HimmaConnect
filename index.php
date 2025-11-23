@@ -124,6 +124,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 <ul class="hidden md:flex gap-8 text-gray-700 font-medium tracking-wide">
 <li><a href="#tentang" class="hover:text-blue-600 transition">Tentang</a></li>
 <li><a href="#kegiatan" class="hover:text-blue-600 transition">Kegiatan</a></li>
+<li><a href="#anggota" class="hover:text-blue-600 transition">Anggota</a></li>
 <li><a href="#aspirasi" class="hover:text-blue-600 transition">Aspirasi</a></li>
 <li><a href="cek_aspirasi.php" class="hover:text-blue-600 transition">Cek Aspirasi</a></li>
 </ul>
@@ -156,6 +157,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
     <ul class="flex flex-col py-3 text-gray-700 font-medium tracking-wide">
         <a href="#tentang" class="px-6 py-3 hover:bg-gray-100">Tentang</a>
         <a href="#kegiatan" class="px-6 py-3 hover:bg-gray-100">Kegiatan</a>
+        <a href="#anggota" class="px-6 py-3 hover:bg-gray-100">Anggota</a>
         <a href="#aspirasi" class="px-6 py-3 hover:bg-gray-100">Aspirasi</a>
         <a href="cek_aspirasi.php" class="px-6 py-3 hover:bg-gray-100">Cek Aspirasi</a>
     </ul>
@@ -309,6 +311,141 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
     </div>
 </section>
 <!-- SECTION KEGIATAN -->
+
+
+<!-- WAVES -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <defs>
+    <linearGradient id="gradWaveSmooth" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd" /> 
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+  </defs>
+
+  <path 
+    fill="url(#gradWaveSmooth)"
+    d="M0,128C120,160,240,224,360,234.7C480,245,600,203,720,170.7C840,139,960,117,1080,117.3C1200,117,1320,139,1440,165.3L1440,320H0Z">
+  </path>
+</svg>
+<!-- WAVES -->
+
+
+<!-- SECTION ANGGOTA / PENGURUS -->
+<section id="anggota" class="pt-32 pb-24 bg-blue-900">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- HEADER -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-4xl font-bold text-white leading-tight">
+          Struktur Pengurus & Anggota HIMA
+        </h2>
+        <p class="mt-5 text-blue-100 text-lg leading-relaxed">
+          Halaman ini menampilkan seluruh pengurus dan anggota aktif HIMA yang terbagi 
+          ke dalam berbagai divisi seperti Acara, Dokumentasi, Humas, Media, dan lainnya.
+          Setiap divisi memiliki peran penting dalam menjalankan kegiatan organisasi.
+        </p>
+      </div>
+
+      <div class="flex justify-center">
+        <img src="assets/img/team-illustration.svg"
+             class="w-64 opacity-90 drop-shadow-xl" alt="">
+      </div>
+    </div>
+
+    <!-- LIST DIVISI -->
+    <div class="mt-16 space-y-6">
+
+      <?php
+      include 'config/koneksi.php';
+      $divisiQuery = mysqli_query($conn, "SELECT DISTINCT divisi FROM anggota ORDER BY divisi ASC");
+      ?>
+
+      <?php while ($d = mysqli_fetch_assoc($divisiQuery)): ?>
+      <?php
+      $divisi = $d['divisi'];
+      $anggota = mysqli_query($conn, "SELECT * FROM anggota WHERE divisi='$divisi'");
+      ?>
+
+      <!-- ACCORDION DIVISI -->
+      <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+        <button 
+          onclick="toggleDivisi('divisi-<?= $divisi ?>')" 
+          class="w-full flex justify-between items-center p-5"
+        >
+          <h3 class="text-xl font-semibold text-blue-900"><?= $divisi ?></h3>
+          <span id="icon-divisi-<?= $divisi ?>" class="text-slate-600 text-2xl font-bold">+</span>
+        </button>
+
+        <!-- CONTENT -->
+        <div id="divisi-<?= $divisi ?>" class="hidden p-5 border-t space-y-4 bg-gray-50">
+
+          <?php while ($a = mysqli_fetch_assoc($anggota)): ?>
+
+          <!-- CARD ANGGOTA PREMIUM -->
+          <div class="flex items-center gap-5 p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:border-blue-300 hover:shadow-md transition">
+            <img src="uploads/anggota/<?= $a['foto'] ?>"
+                 onerror="this.src='assets/img/default-user.png'"
+                 class="w-20 h-20 rounded-full object-cover shadow-md">
+
+            <div>
+              <h4 class="text-lg font-bold text-slate-800"><?= $a['nama'] ?></h4>
+              <p class="text-sm text-slate-600"><?= $a['email'] ?></p>
+              <p class="text-xs text-slate-500 mt-1">Divisi: <?= $divisi ?></p>
+            </div>
+          </div>
+
+          <?php endwhile; ?>
+        </div>
+      </div>
+
+      <?php endwhile; ?>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleDivisi(id) {
+    let content = document.getElementById(id);
+    let icon = document.getElementById("icon-" + id);
+
+    if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        icon.innerHTML = "−";
+        icon.classList.add("text-blue-400");
+    } else {
+        content.classList.add("hidden");
+        icon.innerHTML = "+";
+        icon.classList.remove("text-blue-400");
+    }
+}
+</script>
+<!-- SECTION ANGGOTA / PENGURUS -->
+<!-- WAVES -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <defs>
+    <linearGradient id="waveBottomGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />   <!-- blue-900 -->
+      <stop offset="100%" stop-color="#93c5fd" /> <!-- blue-300 -->
+    </linearGradient>
+  </defs>
+  <path 
+    fill="url(#waveBottomGrad)" 
+    fill-opacity="1"
+    d="M0,256L14.1,245.3C28.2,235,56,213,85,170.7C112.9,128,141,64,169,42.7C197.6,21,
+    226,43,254,90.7C282.4,139,311,213,339,213.3C367.1,213,395,139,424,122.7C451.8,107,
+    480,149,508,176C536.5,203,565,213,593,197.3C621.2,181,649,139,678,133.3C705.9,128,
+    734,160,762,165.3C790.6,171,819,149,847,149.3C875.3,149,904,171,932,186.7C960,203,
+    988,213,1016,192C1044.7,171,1073,117,1101,85.3C1129.4,53,1158,43,1186,53.3C1214.1,
+    64,1242,96,1271,138.7C1298.8,181,1327,235,1355,256C1383.5,277,1412,267,1426,261.3L1440,
+    256L1440,0L0,0Z">
+  </path>
+</svg>
+<!-- WAVES -->
+
+
 
 
 <!-- ASPIRASI SECTION -->
