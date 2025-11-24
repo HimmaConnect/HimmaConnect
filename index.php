@@ -15,81 +15,18 @@
       referrerpolicy="no-referrer"
     />
 
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 </head>
 <body class="bg-gray-100">
 <!-- CSS ANIMASI -->
 
 <style>
 
-html {
+ html {
     scroll-behavior: smooth;
 }
 
-@keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-.fade-up {
-    animation: fadeUp 1s ease-out forwards;
-}
-
-@keyframes reveal {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-.reveal {
-    opacity: 0;
-}
-.reveal.visible {
-    animation: reveal .8s ease-out forwards;
-}
-
-@keyframes waveFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-    100% { transform: translateY(0); }
-}
-.wave-anim {
-    animation: waveFloat 5s ease-in-out infinite;
-}
-
-/* Fade in + slide up */
-@keyframes heroFade {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-animate {
-  animation: heroFade 1.2s ease-out forwards;
-}
-
-@keyframes cardFade {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card-animate {
-  opacity: 0;
-  animation: cardFade 0.9s ease-out forwards;
-}
-.card-animate:nth-child(1) { animation-delay: 0.1s; }
-.card-animate:nth-child(2) { animation-delay: 0.2s; }
-.card-animate:nth-child(3) { animation-delay: 0.3s; }
-.card-animate:nth-child(4) { animation-delay: 0.4s; }
-.card-animate:nth-child(5) { animation-delay: 0.5s; }
 </style>
 
 <!-- CSS -->
@@ -122,11 +59,36 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
 <!-- RIGHT MENU DESKTOP -->
 <ul class="hidden md:flex gap-8 text-gray-700 font-medium tracking-wide">
-<li><a href="#tentang" class="hover:text-blue-300 transition">Tentang</a></li>
-<li><a href="#kegiatan" class="hover:text-blue-300 transition">Kegiatan</a></li>
-<li><a href="#anggota" class="hover:text-blue-300 transition">Anggota</a></li>
-<li><a href="#aspirasi" class="hover:text-blue-300 transition">Aspirasi</a></li>
-<li><a href="cek_aspirasi.php" class="hover:text-blue-300 transition">Cek Aspirasi</a></li>
+  <li>
+    <a href="#tentang" 
+       class="relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-0.5 after:bg-blue-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-6 hover:after:left-0 hover:text-blue-700">
+      Tentang
+    </a>
+  </li>
+  <li>
+    <a href="#kegiatan" 
+       class="relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-0.5 after:bg-blue-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-6 hover:after:left-0 hover:text-blue-700">
+      Kegiatan
+    </a>
+  </li>
+  <li>
+    <a href="#anggota" 
+       class="relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-0.5 after:bg-blue-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-6 hover:after:left-0 hover:text-blue-700">
+      Anggota
+    </a>
+  </li>
+  <li>
+    <a href="#aspirasi" 
+       class="relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-0.5 after:bg-blue-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-6 hover:after:left-0 hover:text-blue-700">
+      Aspirasi
+    </a>
+  </li>
+  <li>
+    <a href="cek_aspirasi.php" 
+       class="relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-0.5 after:bg-blue-500 after:rounded-full after:transition-all after:duration-300 hover:after:w-6 hover:after:left-0 hover:text-blue-700">
+      Cek Aspirasi
+    </a>
+  </li>
 </ul>
 
 
@@ -180,10 +142,15 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
     
     <div class="bg-black bg-opacity-50 w-full h-full flex items-center">
         <div class="container mx-auto px-6 hero-animate">
-            <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg"
+            data-aos="fade-up"
+            data-aos-delay="100"
+            >
                 HimmaConnect
             </h1>
-            <p class="text-white mt-4 text-lg md:text-xl max-w-2xl leading-relaxed drop-shadow fade-up"
+            <p class="text-white mt-4 text-lg md:text-xl max-w-2xl leading-relaxed drop-shadow "
+              data-aos="fade-up"
+              data-aos-delay="300"
                style="animation-delay: .2s;">
                 Platform informasi resmi HIMA untuk mahasiswa. 
                 Menyediakan akses cepat ke kegiatan, event, serta aspirasi 
@@ -194,7 +161,9 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
               class="inline-block mt-6 px-6 py-3 rounded-lg shadow-lg text-white font-semibold 
                       bg-gradient-to-r from-blue-300 to-blue-900 
                       hover:from-blue-400 hover:to-blue-950 
-                      transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+                      transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+                        data-aos="zoom-in"
+                        data-aos-delay="500">
               Lihat Kegiatan
             </a>
 
@@ -207,7 +176,9 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 <section id="tentang" class="pt-32 pb-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
 
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center"
+        data-aos="fade-up"
+        >
             Tentang HimmaConnect
         </h2>
 
@@ -223,7 +194,10 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
         <div class="grid md:grid-cols-3 gap-8 mt-14">
 
             <!-- Card 1 -->
-            <div class="p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition">
+            <div class="p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
                 <h3 class="text-xl font-semibold text-gray-700">Informasi Terpusat</h3>
                 <p class="mt-3 text-gray-600">
                     Semua kegiatan HIMA disajikan dalam satu tempat, mudah diakses kapan saja.
@@ -231,7 +205,10 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
             </div>
 
             <!-- Card 2 -->
-            <div class="p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition">
+            <div class="p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
                 <h3 class="text-xl font-semibold text-gray-700">Aspirasi Online</h3>
                 <p class="mt-3 text-gray-600">
                     Mahasiswa dapat menyampaikan saran, kritik, dan masukan secara langsung.
@@ -239,7 +216,10 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
             </div>
 
             <!-- Card 3 -->
-            <div class="p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition">
+            <div class="p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-md transition"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
                 <h3 class="text-xl font-semibold text-gray-700">Transparan & Modern</h3>
                 <p class="mt-3 text-gray-600">
                     Menampilkan kegiatan secara terbuka dengan tampilan modern dan responsif.
@@ -286,7 +266,10 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
             <a href="detail_kegiatan.php?id=<?= $k['id_kegiatan'] ?>" class="block">
                 <div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl 
                             transition transform hover:scale-[1.03] duration-300 
-                            overflow-hidden">
+                            overflow-hidden"
+                                data-aos="fade-up"
+                                data-aos-anchor-placement="top-bottom"
+                            >
 
                     <img 
                         src="uploads/<?= $k['gambar'] ?>" 
@@ -340,10 +323,15 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
     <!-- HEADER -->
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="text-4xl font-bold text-white leading-tight">
+        <h2 class="text-4xl font-bold text-white leading-tight"
+        data-aos="fade-right"
+        >
           Struktur Pengurus & Anggota HIMA
         </h2>
-        <p class="mt-5 text-blue-100 text-lg leading-relaxed">
+        <p class="mt-5 text-blue-100 text-lg leading-relaxed"
+          data-aos="fade-left"
+          data-aos-delay="200"
+        >
           Halaman ini menampilkan seluruh pengurus dan anggota aktif HIMA yang terbagi 
           ke dalam berbagai divisi seperti Acara, Dokumentasi, Humas, Media, dan lainnya.
           Setiap divisi memiliki peran penting dalam menjalankan kegiatan organisasi.
@@ -375,6 +363,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
         <button 
           onclick="toggleDivisi('divisi-<?= $divisi ?>')" 
           class="w-full flex justify-between items-center p-5"
+          data-aos="fade-up"
         >
           <h3 class="text-xl font-semibold text-blue-900"><?= $divisi ?></h3>
           <span id="icon-divisi-<?= $divisi ?>" class="text-slate-600 text-2xl font-bold">+</span>
@@ -455,12 +444,19 @@ function toggleDivisi(id) {
 <section id="aspirasi" class="py-20 bg-gray-100">
     <div class="max-w-4xl mx-auto px-6">
 
-        <h2 class="text-4xl font-bold text-center mb-6">Sampaikan Aspirasi</h2>
-        <p class="text-center text-gray-600 mb-10">
+        <h2 class="text-4xl font-bold text-center mb-6"
+        data-aos="fade-up"
+        >Sampaikan Aspirasi</h2>
+        <p class="text-center text-gray-600 mb-10"
+         data-aos="fade-up"
+         data-aos-delay="150"
+        >
             Suaramu penting! Kirimkan aspirasi, kritik, atau saran yang akan diterima langsung oleh Admin HIMA.
         </p>
 
-        <form action="save_aspirasi.php" method="POST" 
+        <form  
+        data-aos="zoom-in" data-aos-delay="300"
+        action="save_aspirasi.php" method="POST" 
               class="bg-white p-8 rounded-xl shadow-lg space-y-5">
 
             <div>
@@ -535,7 +531,10 @@ function toggleDivisi(id) {
 
 
 
-<!-- JS -->
+<!-- JS Libraries (Letakkan DI ATAS script custom) -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<!-- JS Custom -->
 <script>
     function toggleProfile() {
         document.getElementById("profileMenu").classList.toggle("hidden");
@@ -544,47 +543,47 @@ function toggleDivisi(id) {
     document.addEventListener("click", function (e) {
         const menu = document.getElementById("profileMenu");
         const buttonArea = e.target.closest("button");
-
         if (!buttonArea) {
             menu.classList.add("hidden");
         }
     });
-</script>
 
-<script>
-function toggleMenu() {
-    const sidebar = document.getElementById("mobileSidebar");
-    const overlay = document.getElementById("mobileOverlay");
-
-    if (sidebar.classList.contains("-translate-x-full")) {
-        sidebar.classList.remove("-translate-x-full");
-        overlay.classList.remove("hidden");
-    } else {
-        sidebar.classList.add("-translate-x-full");
-        overlay.classList.add("hidden");
-    }
-}
-</script>
-
-<!-- scroll js -->
- <script>
-const revealElements = document.querySelectorAll('.reveal');
-
-function checkReveal() {
-    const trigger = window.innerHeight - 80;
-
-    revealElements.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < trigger) {
-            el.classList.add('visible');
+    function toggleMenu() {
+        const sidebar = document.getElementById("mobileSidebar");
+        const overlay = document.getElementById("mobileOverlay");
+        if (sidebar.classList.contains("-translate-x-full")) {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        } else {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
         }
-    });
-}
+    }
 
-window.addEventListener('scroll', checkReveal);
-window.addEventListener('load', checkReveal);
+    function toggleDivisi(id) {
+        let content = document.getElementById(id);
+        let icon = document.getElementById("icon-" + id);
+        if (content.classList.contains("hidden")) {
+            content.classList.remove("hidden");
+            icon.innerHTML = "−";
+            icon.classList.add("text-blue-400");
+        } else {
+            content.classList.add("hidden");
+            icon.innerHTML = "+";
+            icon.classList.remove("text-blue-400");
+        }
+    }
+
+    // ✅ INISIALISASI AOS HARUS SETELAH SCRIPT AOS DIMUAT
+    document.addEventListener("DOMContentLoaded", function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+        });
+    });
 </script>
-<!-- scroll js -->
 
 </body>
 </html>
