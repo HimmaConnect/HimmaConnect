@@ -108,7 +108,7 @@ src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png"
 alt="HimmaConnect Logo"
 class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 >
-<span class="font-semibold text-xl tracking-wide group-hover:text-blue-600 transition">HimmaConnect</span>
+<span class="font-semibold text-xl tracking-wide group-hover:text-blue-300 transition">HimmaConnect</span>
 </button>
 
 
@@ -122,11 +122,11 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
 <!-- RIGHT MENU DESKTOP -->
 <ul class="hidden md:flex gap-8 text-gray-700 font-medium tracking-wide">
-<li><a href="#tentang" class="hover:text-blue-600 transition">Tentang</a></li>
-<li><a href="#kegiatan" class="hover:text-blue-600 transition">Kegiatan</a></li>
-<li><a href="#anggota" class="hover:text-blue-600 transition">Anggota</a></li>
-<li><a href="#aspirasi" class="hover:text-blue-600 transition">Aspirasi</a></li>
-<li><a href="cek_aspirasi.php" class="hover:text-blue-600 transition">Cek Aspirasi</a></li>
+<li><a href="#tentang" class="hover:text-blue-300 transition">Tentang</a></li>
+<li><a href="#kegiatan" class="hover:text-blue-300 transition">Kegiatan</a></li>
+<li><a href="#anggota" class="hover:text-blue-300 transition">Anggota</a></li>
+<li><a href="#aspirasi" class="hover:text-blue-300 transition">Aspirasi</a></li>
+<li><a href="cek_aspirasi.php" class="hover:text-blue-300 transition">Cek Aspirasi</a></li>
 </ul>
 
 
@@ -190,11 +190,14 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
                 yang dapat kamu sampaikan langsung secara online.
             </p>
 
-            <a href="#kegiatan" 
-               class="inline-block mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition fade-up"
-               style="animation-delay: .4s;">
-               Lihat Kegiatan
+            <a href="#kegiatan"
+              class="inline-block mt-6 px-6 py-3 rounded-lg shadow-lg text-white font-semibold 
+                      bg-gradient-to-r from-blue-300 to-blue-900 
+                      hover:from-blue-400 hover:to-blue-950 
+                      transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+              Lihat Kegiatan
             </a>
+
         </div>
     </div>
 </section>
@@ -210,7 +213,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
         <p class="mt-6 text-gray-600 text-lg leading-relaxed text-center max-w-3xl mx-auto">
             HimmaConnect adalah platform informasi resmi dari 
-            <span class="font-semibold text-blue-600">Himpunan Mahasiswa</span> 
+            <span class="font-semibold text-blue-800">Himpunan Mahasiswa</span> 
             yang bertujuan untuk menyediakan informasi kegiatan, event, 
             dan ruang aspirasi bagi seluruh mahasiswa.  
             Semua informasi dapat diakses dengan mudah, cepat, dan transparan.
@@ -314,7 +317,7 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
 
 <!-- WAVES -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 318">
   <defs>
     <linearGradient id="gradWaveSmooth" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#93c5fd" /> 
@@ -479,7 +482,7 @@ function toggleDivisi(id) {
             </div>
 
             <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-lg">
+                class="w-full bg-blue-900 hover:bg-blue-700 text-white font-semibold p-3 rounded-lg">
                 Kirim Aspirasi
             </button>
 
@@ -491,14 +494,14 @@ function toggleDivisi(id) {
 
 <!-- WAVES -->
 <div class="w-full">
- <svg class="wave-anim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2563eb" fill-opacity="1" d="M0,64L48,90.7C96,117
+ <svg class="wave-anim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 317"><path fill="#1e3a8a" fill-opacity="1" d="M0,64L48,90.7C96,117
  ,192,171,288,160C384,149,480,75,576,69.3C672,64,768,128,864,170.7C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440
  ,320L1392,320C1344,320,1248,320,1152,320C1056
  ,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
 </div>
 
 <!-- FOOTER -->
-<footer class="bg-blue-600 text-white py-10">
+<footer class="bg-blue-900 text-white py-10">
   <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center md:items-start gap-6">
 
     <div class="text-center md:text-left max-w-sm">
@@ -520,10 +523,10 @@ function toggleDivisi(id) {
 
     <!-- SOCIAL -->
     <div class="flex gap-4 text-2xl">
-      <a href="#" class="hover:text-gray-300"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" class="hover:text-gray-300"><i class="fa-brands fa-facebook"></i></a>
-      <a href="#" class="hover:text-gray-300"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="#" class="hover:text-gray-300"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/" class="hover:text-gray-300"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://web.facebook.com/?locale=id_ID&_rdc=1&_rdr#" class="hover:text-gray-300"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://id.linkedin.com/" class="hover:text-gray-300"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://x.com/?lang=id" class="hover:text-gray-300"><i class="fa-brands fa-x-twitter"></i></a>
     </div>
 
   </div>

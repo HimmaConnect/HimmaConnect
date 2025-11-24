@@ -3,16 +3,20 @@ include 'config/koneksi.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nama   = mysqli_real_escape_string($conn, $_POST['nama']);
-    $email  = mysqli_real_escape_string($conn, $_POST['email']);
-    $isi    = mysqli_real_escape_string($conn, $_POST['isi']);
+    $nama   = $_POST['nama'];
+    $email  = $_POST['email'];
+    $isi    = $_POST['isi'];
+    $tanggal = date('Y-m-d H:i:s');
 
-    $query = "INSERT INTO aspirasi (nama, email, isi) VALUES ('$nama', '$email', '$isi')";
+    $stmt = $conn->prepare("INSERT INTO aspirasi (nama, email, isi, tanggal, balasan) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $nama, $email, $isi, $tanggal, $balasan);
 
-    if (mysqli_query($conn, $query)) {
+    $balasan = ""; // default kosong
+
+    if ($stmt->execute()) {
         echo "<script>alert('Aspirasi berhasil dikirim!'); window.location='index.php#aspirasi';</script>";
     } else {
-        echo "Gagal: " . mysqli_error($conn);
+        echo "Gagal: " . $stmt->error;
     }
 }
 ?>
