@@ -40,6 +40,7 @@ if (isset($_POST['simpan'])) {
     <meta charset="UTF-8">
     <title>Tambah Anggota - Admin HimaConnect</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="../assets/img/oxvi.jpg" type="image/x-icon">
 </head>
 
 <body class="bg-gray-100">

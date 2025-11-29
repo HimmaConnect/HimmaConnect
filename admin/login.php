@@ -31,6 +31,7 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Admin - HimaConnect</title>
+    <link rel="shortcut icon" href="../assets/img/oxvi.jpg" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }

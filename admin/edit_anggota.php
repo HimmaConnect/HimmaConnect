@@ -58,6 +58,7 @@ if (isset($_POST['update'])) {
 <head>
     <meta charset="UTF-8">
     <title>Edit Anggota - Admin HimaConnect</title>
+    <link rel="shortcut icon" href="../assets/img/oxvi.jpg" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 

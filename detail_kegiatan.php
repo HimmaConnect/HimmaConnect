@@ -18,6 +18,7 @@ if (!$k) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $k['judul'] ?> - HimmaConnect</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="assets/img/oxvi.jpg" type="image/x-icon">
 </head>
 
 <body class="bg-gray-50">
