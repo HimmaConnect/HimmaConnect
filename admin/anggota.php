@@ -243,11 +243,17 @@ document.addEventListener('click', function(e) {
                         </td>
                         <td class="px-4 py-2"><?= htmlspecialchars($row['email']) ?></td>
                         <td class="px-4 py-2">
-                            <a href="edit_anggota.php?id_anggota=<?= $row['id_anggota'] ?>" class="text-blue-600 mr-3">Edit</a>
-                            <a href="#" onclick="hapusAnggota(<?= $row['id_anggota'] ?>)" 
-                                class="flex-1 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm text-center transition">
-                                <i class="fa-solid fa-trash-can text-xs mr-1"></i> Hapus
+                            <a href="edit_anggota.php?id_anggota=<?= $row['id_anggota'] ?>" 
+                            class="block md:inline-block w-full md:w-auto px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm text-center transition mb-2 md:mb-0">
+                            <i class="fa-solid fa-pencil text-xs mr-1"></i> Edit
                             </a>
+
+                           <a href="#" 
+                            onclick="hapusAnggota(<?= $row['id_anggota'] ?>)" 
+                            class="block md:inline-block w-full md:w-auto px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm text-center transition">
+                            <i class="fa-solid fa-trash-can text-xs mr-1"></i> Hapus
+                            </a>
+
 
                         </td>
                     </tr>
