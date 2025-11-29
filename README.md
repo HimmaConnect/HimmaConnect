@@ -44,39 +44,40 @@ Website ini menyediakan fitur lengkap mulai dari manajemen kegiatan, berita, hin
 
 ## 📂 Struktur Folder
 
-
+```
 HimmaConnect/
-├── admin/ # Panel administrasi
-│ ├── index.php # Dashboard admin
-│ ├── login.php # Login admin
-│ ├── logout.php # Logout session
-│ ├── kegiatan.php # Daftar kegiatan
-│ ├── tambah_kegiatan.php# Form tambah kegiatan
-│ ├── edit_kegiatan.php # Form edit kegiatan
-│ ├── hapus_kegiatan.php # Proses hapus kegiatan
-│ ├── anggota.php # Daftar anggota
-│ ├── tambah_anggota.php # Form tambah anggota
-│ ├── edit_anggota.php # Form edit anggota
-│ ├── hapus_anggota.php # Proses hapus anggota
-│ ├── aspirasi.php # Daftar aspirasi
-│ ├── edit_aspirasi.php # Form edit aspirasi
-│ └── hapus_aspirasi.php # Proses hapus aspirasi
+├── admin/                 # Panel administrasi
+│   ├── index.php          # Dashboard admin
+│   ├── login.php          # Login admin
+│   ├── logout.php         # Logout session
+│   ├── kegiatan.php       # Daftar kegiatan
+│   ├── tambah_kegiatan.php# Form tambah kegiatan
+│   ├── edit_kegiatan.php  # Form edit kegiatan
+│   ├── hapus_kegiatan.php # Proses hapus kegiatan
+│   ├── anggota.php        # Daftar anggota
+│   ├── tambah_anggota.php # Form tambah anggota
+│   ├── edit_anggota.php   # Form edit anggota
+│   ├── hapus_anggota.php  # Proses hapus anggota
+│   ├── aspirasi.php       # Daftar aspirasi
+│   ├── edit_aspirasi.php  # Form edit aspirasi
+│   └── hapus_aspirasi.php # Proses hapas aspirasi
 │
 ├── config/
-│ └── koneksi.php # Konfigurasi koneksi database
+│   └── koneksi.php        # Konfigurasi koneksi database
 │
 ├── assets/
-│ └── img/
-│ └── organisasi-bg.jpeg
+│   └── img/
+│       └── organisasi-bg.jpeg
 │
-├── uploads/ # Penyimpanan file upload
+├── uploads/               # Penyimpanan file upload
 │
-├── cek_aspirasi.php # Validasi & submit aspirasi
+├── cek_aspirasi.php       # Validasi & submit aspirasi
 ├── detail_aspirasi_user.php
 ├── detail_kegiatan.php
-├── save_aspirasi.php # Proses penyimpanan aspirasi
-├── proses_balas.php # Proses balas aspirasi admin
-└── index.php # Halaman utama publik
+├── save_aspirasi.php      # Proses penyimpanan aspirasi
+├── proses_balas.php       # Proses balas aspirasi admin
+└── index.php              # Halaman utama publik
+```
 
 
 
