@@ -48,8 +48,9 @@ if (isset($_POST['update'])) {
         WHERE id_anggota='$id'
     ");
 
-    header("Location: anggota.php");
+    header("Location: anggota.php?status=edited");
     exit;
+
 }
 ?>
 <!DOCTYPE html>

@@ -6,6 +6,6 @@ $balasan = $_POST['balasan'];
 
 mysqli_query($conn, "UPDATE aspirasi SET balasan = '$balasan' WHERE id_aspirasi = $id");
 
-header("Location: aspirasi.php");
+header("Location: aspirasi.php?status=edited");
 exit;
 ?>

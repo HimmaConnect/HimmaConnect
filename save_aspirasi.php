@@ -1,5 +1,7 @@
 <?php
 include 'config/koneksi.php';
+date_default_timezone_set('Asia/Jakarta'); // <- pastiin ini
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

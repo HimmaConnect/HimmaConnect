@@ -31,6 +31,7 @@ $divisi_warna = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Anggota — HimmaConnect Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <style>
@@ -179,11 +180,10 @@ document.addEventListener('click', function(e) {
                            class="flex-1 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm text-center transition">
                             <i class="fa-solid fa-edit text-xs mr-1"></i> Edit
                         </a>
-                        <a href="hapus_anggota.php?id_anggota=<?= $row['id_anggota'] ?>"
-                           onclick="return confirm('⚠️ Yakin hapus <?= addslashes($row['nama']) ?>?\nData tidak bisa dikembalikan.')"
-                           class="flex-1 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm text-center transition">
-                            <i class="fa-solid fa-trash-can text-xs mr-1"></i> Hapus
-                        </a>
+                       <a href="#" onclick="hapusAnggota(<?= $row['id_anggota'] ?>)" 
+                                class="flex-1 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm text-center transition">
+                                <i class="fa-solid fa-trash-can text-xs mr-1"></i> Hapus
+                            </a>
                     </div>
                 </div>
             </div>
@@ -243,7 +243,11 @@ document.addEventListener('click', function(e) {
                         <td class="px-4 py-2"><?= htmlspecialchars($row['email']) ?></td>
                         <td class="px-4 py-2">
                             <a href="edit_anggota.php?id_anggota=<?= $row['id_anggota'] ?>" class="text-blue-600 mr-3">Edit</a>
-                            <a href="hapus_anggota.php?id_anggota=<?= $row['id_anggota'] ?>" class="text-red-600">Hapus</a>
+                            <a href="#" onclick="hapusAnggota(<?= $row['id_anggota'] ?>)" 
+                                class="flex-1 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm text-center transition">
+                                <i class="fa-solid fa-trash-can text-xs mr-1"></i> Hapus
+                            </a>
+
                         </td>
                     </tr>
                     <?php endwhile; ?>
@@ -259,5 +263,59 @@ document.addEventListener('click', function(e) {
 
 </div>
 
+<!-- Alert Delete -->
+ <script>
+function hapusAnggota(id) {
+    Swal.fire({
+        title: "Yakin hapus data ini?",
+        text: "Aksi ini tidak bisa dibatalkan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = "hapus_anggota.php?id_anggota=" + id;
+        }
+    });
+}
+</script>
+
+
+<!-- SWEETALERT -->
+ <?php if (isset($_GET['status'])): ?>
+<script>
+const status = "<?= $_GET['status'] ?>";
+
+if (status === "added") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Data anggota berhasil ditambahkan!',
+        showConfirmButton: false,
+        timer: 1800
+    });
+}
+
+if (status === "edited") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Data anggota berhasil disimpan!',
+        showConfirmButton: false,
+        timer: 1800
+    });
+}
+
+if (status === "deleted") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Data anggota berhasil dihapus!',
+        showConfirmButton: false,
+        timer: 1800
+    });
+}
+</script>
+<?php endif; ?>
 </body>
 </html>

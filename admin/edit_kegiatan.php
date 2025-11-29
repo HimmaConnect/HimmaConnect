@@ -35,8 +35,9 @@ if (isset($_POST['update'])) {
     }
 
     mysqli_query($conn, $query);
-    header("Location: kegiatan.php");
+    header("Location: kegiatan.php?status=edited");
     exit;
+
 }
 ?>
 

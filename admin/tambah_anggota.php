@@ -29,8 +29,9 @@ if (isset($_POST['simpan'])) {
          VALUES ('$nama', '$divisi', '$email', '$fotoName')"
     );
 
-    header("Location: anggota.php");
+    header("Location: anggota.php?status=added");  
     exit;
+
 }
 ?>
 <!DOCTYPE html>

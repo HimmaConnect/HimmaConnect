@@ -19,8 +19,9 @@ $id = $_GET['id_anggota'];
 $query = mysqli_query($conn, "DELETE FROM anggota WHERE id_anggota='$id'");
 
 if ($query) {
-    header("Location: anggota.php?hapus=berhasil");
-    exit;
+    header("Location: anggota.php?status=deleted");
+exit;
+
 } else {
     die("Gagal menghapus data: " . mysqli_error($conn));
 }

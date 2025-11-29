@@ -17,6 +17,7 @@ $total_kegiatan = mysqli_num_rows($kegiatan);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Kegiatan — HimaConnect Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
@@ -29,7 +30,7 @@ $total_kegiatan = mysqli_num_rows($kegiatan);
             <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                 HC
             </div>
-            <h1 class="text-xl font-bold text-blue-700">HimaConnect <span class="text-sm text-gray-500">Admin</span></h1>
+            <h1 class="text-xl font-bold text-blue-700">HimmaConnect <span class="text-sm text-gray-500">Admin</span></h1>
         </div>
 
         <div class="hidden md:flex items-center gap-6 text-gray-700">
@@ -161,11 +162,12 @@ document.addEventListener('click', function(e) {
                                    class="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm shadow-sm transition flex items-center gap-1">
                                     <i class="fa-solid fa-edit"></i> Edit
                                 </a>
-                                <a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan'] ?>"
-                                   onclick="return confirm('⚠️ Yakin ingin menghapus kegiatan ini?\nData tidak bisa dikembalikan.')"
-                                   class="px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow-sm transition flex items-center gap-1">
-                                    <i class="fa-solid fa-trash-can"></i> Hapus
+                              <a href="#" 
+                                    onclick="hapusKegiatan(<?= $row['id_kegiatan'] ?>)" 
+                                    class="px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm shadow-sm transition flex items-center gap-1">
+                                    <i class="fa-solid fa-trash-can text-xs mr-1"></i> Hapus
                                 </a>
+
                             </div>
                         </td>
                     </tr>
@@ -195,6 +197,62 @@ document.addEventListener('click', function(e) {
         Thumbnail gambar diambil dari folder <code>../uploads/</code>
     </div>
 </div>
+
+<!-- Alert delete -->
+ <script>
+function hapusKegiatan(id) {
+Swal.fire({
+        title: "Yakin hapus data ini?",
+        text: "Aksi ini tidak bisa dibatalkan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Hapus",
+        cancelButtonText: "Batal"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = "hapus_kegiatan.php?id=" + id;
+        }
+    });
+}
+</script>
+
+
+<!-- SWEETALERT -->
+ <?php if (isset($_GET['status'])): ?>
+<script>
+const status = "<?= $_GET['status'] ?>";
+
+if (status === "added") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Kegiatan berhasil ditambahkan!',
+        showConfirmButton: false,
+        timer: 1800
+    });
+}
+
+if (status === "edited") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Perubahan berhasil disimpan!',
+        showConfirmButton: false,
+        timer: 1800
+    });
+}
+
+if (status === "deleted") {
+    Swal.fire({
+        icon: 'success',
+        title: 'Kegiatan berhasil dihapus!',
+        showConfirmButton: false,
+        timer: 1800
+    });
+}
+</script>
+<?php endif; ?>
+
 
 </body>
 </html>

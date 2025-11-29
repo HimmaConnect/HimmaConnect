@@ -24,7 +24,7 @@ if (isset($_POST['simpan'])) {
          VALUES ('$judul','$deskripsi','$tanggal','$gambar')"
     );
 
-    header("Location: kegiatan.php");
+    header("Location: kegiatan.php?status=added");
     exit;
 }
 ?>

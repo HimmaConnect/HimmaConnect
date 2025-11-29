@@ -374,18 +374,19 @@ class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition"
 
           <?php while ($a = mysqli_fetch_assoc($anggota)): ?>
 
-          <!-- CARD ANGGOTA PREMIUM -->
-          <div class="flex items-center gap-5 p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:border-blue-300 hover:shadow-md transition">
-            <img src="uploads/anggota/<?= $a['foto'] ?>"
-                 onerror="this.src='assets/img/default-user.png'"
-                 class="w-20 h-20 rounded-full object-cover shadow-md">
+ <!-- CARD ANGGOTA PREMIUM -->
+<div class="flex flex-col sm:flex-row items-center gap-5 p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:border-blue-300 hover:shadow-md transition">
+  <img src="uploads/anggota/<?= $a['foto'] ?>"
+       onerror="this.src='assets/img/default-user.png'"
+       class="w-20 h-20 rounded-full object-cover shadow-md flex-shrink-0">
 
-            <div>
-              <h4 class="text-lg font-bold text-slate-800"><?= $a['nama'] ?></h4>
-              <p class="text-sm text-slate-600"><?= $a['email'] ?></p>
-              <p class="text-xs text-slate-500 mt-1">Divisi: <?= $divisi ?></p>
-            </div>
-          </div>
+  <div class="flex-1 min-w-0 text-center sm:text-left">
+    <h4 class="text-lg font-bold text-slate-800 truncate"><?= $a['nama'] ?></h4>
+    <p class="text-sm text-slate-600 truncate"><?= $a['email'] ?></p>
+    <p class="text-xs text-slate-500 mt-1">Divisi: <?= $divisi ?></p>
+  </div>
+</div>
+
 
           <?php endwhile; ?>
         </div>
