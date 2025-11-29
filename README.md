@@ -67,7 +67,6 @@ HimmaConnect/
 │
 ├── assets/
 │   └── img/
-│       └── organisasi-bg.jpeg
 │
 ├── uploads/               # Penyimpanan file upload
 │
